@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Buzón de Sugerencias</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-logos">
+        <a href="https://www.isabu.gov.co" target="_blank">
+          <img src="img/isabu.png" alt="ISABU" />
+        </a>
+        <div class="header-title">
+          <h2>DETECTA: PREVENCION CERVICAL 360°</h2>
+        </div>
+        <a href="https://www.umb.edu.co" target="_blank">
+          <img src="img/umb.png" alt="Universidad Manuela Beltrán" />
+        </a>
+      </div>
+    </header>
+
+    <button class="toggle-sidebar">⋮</button>
+
+    <!-- Barra lateral de navegación -->
+    <aside class="sidebar">
+      <h3>Navegación</h3>
+      <ul class="nav-list">
+        <li>
+          <a href="index.html" class="home">🏠 Página principal</a>
+        </li>
+        <li class="nav-section">
+          <a href="#" class="nav-toggle">📚 Módulos</a>
+          <ul class="submenu">
+            <li><a href="modulo1.html">Módulo 1: Reforzamiento <br>Teórico</a></li>
+            <li><a href="modulo2.html">Módulo 2: Trámite Administrativo</a></li>
+            <li><a href="modulo3.html">Módulo 3: Procedimiento</a></li>
+          </ul>
+        </li>
+        <li><a href="antecedentes.html">📖 Introducción</a></li>
+
+        <li class="nav-section">
+          <a href="#" class="nav-toggle">👩‍🏫 Autores</a>
+          <ul class="submenu">
+            <li>-Gabriela Roa: Estudiante de enfermería (9° semestre)</li>
+            <li>-Silvia Rueda: Estudiante de enfermería (9° semestre)</li>
+            <li>-Edwing Urrea: Docente Asesor</li>
+            <li>-Manuel Roa: Diseñador Web</li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <a href="#" class="nav-toggle">🌐 Repositorio</a>
+          <ul class="submenu">
+            <li>
+              <a
+                href="https://www.who.int/es/news-room/fact-sheets/detail/cervical-cancer"
+                >1. Cancer de cuello uterino</a
+              >
+            </li>
+            <li>
+              <a href="https://www.paho.org/es/temas/cancer-cervicouterino"
+                >2. Cáncer cervicouterino</a
+              >
+            </li>
+            <li>
+              <a href="https://iris.paho.org/handle/10665.2/38574"
+                >3. Plan de Acción para la Prevención y el Control del Cáncer
+                Cervicouterino 2018-2030</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.paho.org/es/documents/temas/cancer-cervicouterino"
+                >4. Documentos cáncer cervicouterino</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="buzon.html">📬 Buzón de sugerencias</a></li>
+      </ul>
+    </aside>
+
+    <!-- Contenido del buzón -->
+    <main>
+      <section class="buzon-container">
+        <h1>📬 Buzón de Sugerencias</h1>
+        <p>
+          Tu opinión es muy importante para mejorar esta herramienta educativa.
+          Por favor, comparte tus sugerencias o comentarios.
+        </p>
+
+        <form action="https://api.web3forms.com/submit" method="POST">
+          <!-- CLAVE DE ACCESO -->
+          <input
+            type="hidden"
+            name="access_key"
+            value="c2447323-8742-4979-a561-d8ea2fea9966"
+          />
+
+          <!-- Asunto del correo -->
+          <input
+            type="hidden"
+            name="subject"
+            value="Nueva Sugerencia De Pagina Web"
+          />
+
+          <!-- Página de redirección -->
+          <input
+            type="hidden"
+            name="redirect"
+            value="gracias.html"
+          />
+
+          <label for="nombre">Nombre (opcional):</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            placeholder="Escribe tu nombre..."
+          />
+
+          <label for="correo">Correo electrónico (opcional):</label>
+          <input
+            type="email"
+            id="correo"
+            name="correo"
+            placeholder="ejemplo@correo.com"
+          />
+
+          <label for="categoria">Categoría de la sugerencia:</label>
+          <select id="categoria" name="categoria" required>
+            <option value="">Selecciona una opción...</option>
+            <option value="contenido">Contenido educativo</option>
+            <option value="diseno">Diseño visual o navegación</option>
+            <option value="tecnica">Problemas técnicos</option>
+            <option value="otro">Otro</option>
+          </select>
+
+          <label for="mensaje">Mensaje o sugerencia:</label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            placeholder="Escribe tus sugerencias aquí..."
+            required
+          ></textarea>
+
+          <button type="submit">Enviar sugerencia</button>
+        </form>
+
+        <div class="decor-line"></div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggles = document.querySelectorAll(".nav-toggle");
+
+        toggles.forEach((toggle) => {
+          toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle("open");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

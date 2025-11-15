@@ -1,0 +1,898 @@
+/* ============================================================
+   ESTILOS GENERALES
+   ============================================================ */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f2f8fc;
+  color: #023e8a;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* ============================================================
+   🌐 BARRA LATERAL DE NAVEGACIÓN
+   ============================================================ */
+.sidebar {
+  position: fixed;
+  top: 100px; /* 👈 Empieza justo debajo del encabezado */
+  left: 0;
+  height: calc(100vh - 100px); /* 👈 Altura ajustada al espacio restante */
+  width: 220px;
+  background: #ffffff;
+  border-right: 2px solid #0077b6;
+  padding: 25px 15px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+  color: #023e8a;
+  display: flex;
+  flex-direction: column;
+  z-index: 900; /* debajo del header */
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+}
+
+.sidebar.hidden {
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+
+.sidebar h3 {
+  font-size: 1rem;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: #023e8a;
+  border-bottom: 2px solid #0077b6;
+  padding-bottom: 8px;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.nav-list li {
+  margin-bottom: 14px;
+}
+
+.nav-list a,
+.nav-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #023e8a;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  font-size: 0.95rem;
+  background-color: #f8fbff;
+  width: 100%;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.nav-list a:hover,
+.nav-toggle:hover {
+  background-color: #e3f2fd;
+  color: #0077b6;
+  transform: translateX(4px);
+}
+
+/* === Submenús === */
+.submenu {
+  list-style: none;
+  padding-left: 10px;
+  margin-top: 6px;
+  border-left: 2px solid #cfe8fa;
+  background-color: #f9fcff;
+  border-radius: 6px;
+  box-shadow: inset 0 0 3px rgba(0, 119, 182, 0.05);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.nav-section.open .submenu {
+  max-height: 350px;
+  opacity: 1;
+  padding: 6px 0;
+}
+
+.submenu li a {
+  display: block;
+  padding: 8px 12px;
+  color: #023e8a;
+  font-size: 0.9rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.submenu li a:hover {
+  background-color: #e0f0ff;
+  color: #0077b6;
+  transform: translateX(3px);
+}
+
+.nav-toggle {
+  display: flex;
+  justify-content: flex-start; /* 🔹 alinea el texto e ícono a la izquierda */
+  align-items: center;
+  background-color: #eaf4ff;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 12px 20px; /* espacio interno */
+  margin: 10px auto; /* 🔹 separa los botones y los centra como bloque */
+  width: 80%; /* ajusta el ancho dentro del sidebar */
+  text-align: left; /* asegura alineación del texto */
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.nav-toggle:hover {
+  background-color: #d2e9ff;
+  transform: scale(1.03);
+}
+
+.nav-toggle::after {
+  content: "▸";
+  font-size: 0.8rem;
+  margin-left: auto; /* 🔹 flecha se mueve al extremo derecho */
+  transition: transform 0.3s ease;
+}
+
+.nav-section.open .nav-toggle::after {
+  transform: rotate(90deg);
+}
+
+/* ============================================================
+   🔘 BOTONES DE NAVEGACIÓN ENTRE MÓDULOS
+   ============================================================ */
+.nav-buttons {
+  display: flex;
+  justify-content: center; /* 🔹 Centra los botones horizontalmente */
+  align-items: center;
+  gap: 1.5rem; /* 🔹 Espaciado entre botones */
+  margin: 30px auto 0 auto; /* 🔹 Espacio desde el encabezado */
+  text-align: center;
+  flex-wrap: wrap; /* 🔹 Permite que se ajusten en pantallas pequeñas */
+}
+
+/* === ESTILO GENERAL DE LOS BOTONES === */
+.nav-buttons .btn {
+  background-color: #0077b6; /* 🔹 Azul principal */
+  color: white;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* === EFECTO AL PASAR EL MOUSE === */
+.nav-buttons .btn:hover {
+  background-color: #00b4d8;
+  transform: scale(1.05);
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* === RESPONSIVE PARA PANTALLAS PEQUEÑAS === */
+@media (max-width: 600px) {
+  .nav-buttons {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .nav-buttons .btn {
+    width: 80%; /* 🔹 Botones más anchos en móviles */
+  }
+}
+
+/* ============================================================
+   ENCABEZADO
+   ============================================================ */
+.header {
+  position: fixed; /* 👈 Ahora fijo en la parte superior */
+  top: 0;
+  left: 0;
+  width: 100%; /* 👈 Ocupa todo el ancho de la pantalla */
+  background-color: #ffffff;
+  color: #023e8a;
+  padding: 8px 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  border-bottom: 2px solid #0077b6;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  z-index: 1000; /* Encima de la barra lateral */
+  height: 100px; /* 👈 Altura fija para coordinar con la barra lateral */
+  box-sizing: border-box;
+}
+
+.header-logos {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1150px;
+  margin: 0 auto;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
+.header-logos img {
+  height: 120px;
+  object-fit: contain;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.3s ease;
+}
+
+.header-logos img:hover {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+.header-title {
+  text-align: center;
+  flex: 1;
+}
+
+.header-title h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #023e8a;
+  letter-spacing: 1px;
+}
+
+/* ============================================================
+   TARJETAS DE MÓDULOS
+   ============================================================ */
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-left: 50px;
+  margin-top: 120px; /* 🔹 agrega espacio debajo del header */
+  gap: 25px;
+  padding: 0 40px;
+}
+
+.card {
+  background: linear-gradient(180deg, #ffffff 0%, #f7fbff 100%);
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  max-width: 320px;
+  min-width: 280px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  background: #eaf3ff;
+}
+
+.card-content {
+  padding: 20px;
+  flex-grow: 1;
+}
+
+.card-content h3 {
+  margin: 10px 0;
+  font-size: 1.2rem;
+  color: #023e8a;
+  font-weight: 700;
+}
+
+.card-content p {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 20px;
+  min-height: 60px;
+}
+
+.btn {
+  background-color: #0077b6;
+  color: white;
+  text-decoration: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  background-color: #004a99;
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   BOTÓN INFERIOR
+   ============================================================ */
+.footer-btn {
+  text-align: center;
+  margin: 40px 0;
+  margin-left: 50px;
+}
+
+.main-btn {
+  background-color: #023e8a;
+  color: white;
+  padding: 12px 25px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.main-btn:hover {
+  background-color: #0353a4;
+}
+
+/* ============================================================
+   MÓDULO GENERAL
+   ============================================================ */
+.modulo {
+  max-width: 950px;
+  margin: 2.5rem auto;
+  padding: 2rem 2.5rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.8s ease;
+}
+
+.modulo h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #023e8a;
+  border-bottom: 3px solid #023e8a;
+  padding-bottom: 0.5rem;
+}
+
+.modulo h3 {
+  color: #023e8a;
+  font-size: 1.4rem;
+  border-left: 5px solid #023e8a;
+  padding-left: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+/* ============================================================
+   ACORDEONES
+   ============================================================ */
+.acordeon-item,
+.subacordeon-item {
+  background: #fff7f8;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.acordeon-titulo,
+.subacordeon-titulo {
+  background: #023e8a;
+  color: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+  padding: 1rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.acordeon-titulo:hover,
+.subacordeon-titulo:hover {
+  background: #0353a4;
+}
+
+.acordeon-contenido,
+.subacordeon-contenido {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 1.2rem;
+  transition: all 0.4s ease;
+  background: #fff;
+}
+
+.acordeon-item.activo .acordeon-contenido,
+.subacordeon-item.activo .subacordeon-contenido {
+  max-height: none;
+  opacity: 1;
+  padding: 1.2rem;
+}
+
+.acordeon-contenido ul {
+  background: #fff0f2;
+  border-left: 4px solid #023e8a;
+  padding: 1rem 2rem;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+
+img {
+  display: block;
+  margin: 1rem auto;
+  max-width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* === IMÁGENES === */
+.subacordeon-contenido img {
+  display: block;
+  max-width: 90%;
+  height: auto;
+  margin: 15px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subacordeon-contenido img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+/* === VIDEOS === */
+.video-container {
+  position: relative;
+  width: 90%;
+  max-width: 700px;
+  margin: 20px auto;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+}
+
+.video-container video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+  outline: none;
+  background-color: #000;
+  transition: transform 0.3s ease;
+}
+
+.video-container:hover video {
+  transform: scale(1.01);
+}
+
+/* === Efecto de animación al abrir === */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* === RESPONSIVIDAD === */
+@media (max-width: 768px) {
+  .subacordeon-contenido img {
+    max-width: 100%;
+  }
+
+  .video-container {
+    width: 100%;
+    margin: 15px 0;
+  }
+
+  .subacordeon-titulo {
+    font-size: 0.95rem;
+    padding: 10px;
+  }
+}
+
+/* ============================================================
+   BOTÓN FLOTANTE (TRES PUNTOS)
+   ============================================================ */
+.toggle-sidebar {
+  position: fixed;
+  top: 25px;
+  left: 40px;
+  background-color: #0077b6;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 2000;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.toggle-sidebar:hover {
+  background-color: #023e8a;
+  transform: rotate(90deg);
+}
+
+/* ============================================================
+   VISTA DE MÓDULOS — CENTRADA Y DEBAJO DEL ENCABEZADO
+   ============================================================ */
+body.modulo-activo .header {
+  margin-left: 0;
+  width: 100%;
+}
+
+body.modulo-activo .sidebar {
+  display: none;
+}
+
+body.modulo-activo main {
+  margin: 120px auto 0 auto; /* 👈 Centrado y debajo del encabezado */
+  padding: 2rem;
+  max-width: 1000px;
+  width: 90%; /* 👈 Ajuste flexible para pantallas más pequeñas */
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  animation: fadeIn 0.8s ease;
+}
+
+body.modulo-activo .footer-btn {
+  margin: 40px auto; /* 👈 Centrado horizontal */
+  text-align: center;
+}
+
+/* ============================================================
+   SECCIONES ADICIONALES (ANTECEDENTES Y BUZÓN) — CENTRADAS
+   ============================================================ */
+.antecedentes-container,
+.buzon-container {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  max-width: 900px;
+  width: 90%; /* 👈 Ajusta automáticamente según el tamaño de pantalla */
+  text-align: justify;
+  line-height: 1.6;
+  margin: 120px auto; /* 👈 Centrado horizontal + espacio debajo del encabezado */
+  box-sizing: border-box;
+  animation: fadeIn 0.8s ease;
+}
+
+.antecedentes-container h1,
+.buzon-container h1 {
+  color: #0077b6;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.decor-line {
+  width: 60%;
+  height: 4px;
+  background-color: #0077b6;
+  margin: 40px auto 0 auto;
+  border-radius: 3px;
+}
+
+/* === Formulario del Buzón === */
+.buzon-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.buzon-container label {
+  font-weight: bold;
+  color: #023e8a;
+}
+
+.buzon-container input,
+.buzon-container select,
+.buzon-container textarea {
+  padding: 10px;
+  border: 1px solid #90e0ef;
+  border-radius: 8px;
+  font-size: 1rem;
+  resize: vertical;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.buzon-container input:focus,
+.buzon-container select:focus,
+.buzon-container textarea:focus {
+  border-color: #0077b6;
+  box-shadow: 0 0 6px rgba(0, 119, 182, 0.4);
+  outline: none;
+}
+
+.buzon-container textarea {
+  min-height: 120px;
+}
+
+.buzon-container button {
+  background-color: #0077b6;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: fit-content;
+  align-self: center; /* 👈 Centra el botón */
+  margin-top: 10px;
+}
+
+.buzon-container button:hover {
+  background-color: #023e8a;
+}
+
+/* ============================================================
+   🎯 GALERÍA DE INSUMOS (3 x 2 TARJETAS)
+   ============================================================ */
+.galeria-insumos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 📏 3 columnas fijas */
+  gap: 25px;
+  justify-items: center;
+  align-items: start;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+/* === Tarjetas de insumos === */
+.insumo {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 220px;
+  height: 250px; /* 📏 Altura uniforme */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.insumo:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+/* === Imagen individual === */
+.insumo img {
+  width: 100%;
+  height: 120px;
+  object-fit: contain;
+  margin-bottom: 10px;
+  transition: transform 0.3s ease;
+}
+
+.insumo:hover img {
+  transform: scale(1.05);
+}
+
+/* === Texto debajo de las imágenes === */
+.insumo p {
+  font-size: 0.95rem;
+  color: #023e8a;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* === Insumo con doble imagen (cepillo + espátula) === */
+.insumo.doble {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.imagenes-dobles {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  align-items: center;
+  flex-grow: 1;
+  margin-bottom: 10px;
+}
+
+.imagenes-dobles img {
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: #f8fbff;
+  padding: 5px;
+  transition: transform 0.3s ease;
+}
+
+.insumo.doble:hover .imagenes-dobles img {
+  transform: scale(1.1);
+}
+
+.imagenes-pares {
+  display: flex;
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center;
+  gap: 20px; /* Espacio entre imágenes */
+  margin: 20px 0;
+  flex-wrap: wrap; /* Para que bajen si la pantalla es pequeña */
+}
+
+.imagenes-pares img {
+  width: 250px; /* Tamaño uniforme */
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px; /* Bordes redondeados */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Sombra suave */
+  transition: transform 0.3s ease;
+}
+
+.imagenes-pares img:hover {
+  transform: scale(1.05); /* Efecto hover */
+}
+
+/* Puedes dejar esto aquí o pasarlo a styles.css */
+.gracias-container {
+  max-width: 600px;
+  margin: 80px auto;
+  padding: 30px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.gracias-container h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.gracias-container p {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 25px;
+}
+
+.btn-volver {
+  display: inline-block;
+  padding: 12px 25px;
+  font-size: 1rem;
+  background-color: #ff69b4; /* color acorde al tema */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.btn-volver:hover {
+  background-color: #ff4fa3;
+}
+
+/* === Responsividad === */
+@media (max-width: 900px) {
+  .galeria-insumos {
+    grid-template-columns: repeat(2, 1fr); /* 📱 2 columnas en tablets */
+  }
+}
+
+@media (max-width: 600px) {
+  .galeria-insumos {
+    grid-template-columns: 1fr; /* 📱 1 columna en móviles */
+  }
+
+  .insumo {
+    max-width: 250px;
+    height: 230px;
+  }
+
+  .imagenes-dobles img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+/* ============================================================
+   ANIMACIONES
+   ============================================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================
+   RESPONSIVE DESIGN
+   ============================================================ */
+@media (max-width: 992px) {
+  main,
+  .header,
+  .footer-btn {
+    margin-left: 0;
+  }
+
+  .sidebar {
+    position: relative;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid #dbe9f0;
+    box-shadow: none;
+  }
+
+  .header-logos {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 800px) {
+  .toggle-sidebar {
+    display: block;
+  }
+
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.hidden {
+    transform: translateX(0);
+  }
+
+  main {
+    margin-left: 0;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .galeria-insumos {
+    grid-template-columns: 1fr;
+  }
+
+  .imagenes-dobles img {
+    width: 100%;
+  }
+}

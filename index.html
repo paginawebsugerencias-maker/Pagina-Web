@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Módulos de Guía</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Encabezado -->
+    <header class="header">
+      <div class="header-logos">
+        <a href="https://www.isabu.gov.co" target="_blank">
+          <img src="img/isabu.png" alt="ISABU" />
+        </a>
+        <div class="header-title">
+          <h2>DETECTA: PREVENCION CERVICAL 360°</h2>
+        </div>
+        <a href="https://www.umb.edu.co" target="_blank">
+          <img src="img/umb.png" alt="Universidad Manuela Beltrán" />
+        </a>
+      </div>
+    </header>
+
+    <button class="toggle-sidebar">⋮</button>
+
+    <!-- Barra lateral de navegación -->
+    <aside class="sidebar">
+      <h3>Navegación</h3>
+      <ul class="nav-list">
+        <li>
+          <a href="#" class="home">🏠 Página principal</a>
+        </li>
+        <li class="nav-section">
+          <a href="#" class="nav-toggle">📚 Módulos</a>
+          <ul class="submenu">
+            <li><a href="modulo1.html">Módulo 1: Reforzamiento <br>Teórico</a></li>
+            <li><a href="modulo2.html">Módulo 2: Trámite Administrativo</a></li>
+            <li><a href="modulo3.html">Módulo 3: Procedimiento</a></li>
+          </ul>
+        </li>
+        <li><a href="antecedentes.html">📖 Introducción</a></li>
+
+        <li class="nav-section">
+          <a href="#" class="nav-toggle">👩‍🏫 Autores</a>
+          <ul class="submenu">
+            <li>-Gabriela Roa: Estudiante de enfermería (9° semestre)</li>
+            <li>-Silvia Rueda: Estudiante de enfermería (9° semestre)</li>
+            <li>-Edwing Urrea: Docente Asesor</li>
+            <li>-Manuel Roa: Diseñador Web</li>
+          </ul>
+        </li>
+
+        <li class="nav-section">
+          <a href="#" class="nav-toggle">🌐 Repositorio</a>
+          <ul class="submenu">
+            <li>
+              <a href="https://www.who.int/es/news-room/fact-sheets/detail/cervical-cancer">1. Cancer de cuello uterino</a>
+            </li>
+            <li>
+              <a href="https://www.paho.org/es/temas/cancer-cervicouterino"
+                >2. Cáncer cervicouterino</a
+              >
+            </li>
+            <li>
+              <a href="https://iris.paho.org/handle/10665.2/38574"
+                >3. Plan de Acción para la Prevención y el Control del Cáncer
+                Cervicouterino 2018-2030</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.paho.org/es/documents/temas/cancer-cervicouterino"
+                >4. Documentos cáncer cervicouterino</a
+              >
+            </li>
+          </ul>
+        </li>
+
+        <li><a href="buzon.html">📬 Buzón de sugerencias</a></li>
+      </ul>
+    </aside>
+
+    <!-- Tarjetas de módulos -->
+    <main class="card-container">
+      <div class="card">
+        <img src="img/modulo1.png" alt="Módulo 1" />
+        <div class="card-content">
+          <h3>Reforzamiento Teórico</h3>
+          <p>Introducción detención temprana del Cáncer de cuello uterino</p>
+          <a href="modulo1.html" class="btn">Módulo 1</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="img/modulo2.png" alt="Módulo 2" />
+        <div class="card-content">
+          <h3>Trámite Administrativo</h3>
+          <p>
+            Describe el proceso administrativo que se realiza para solicitar la
+            toma de citología cervicouterina.
+          </p>
+          <a href="modulo2.html" class="btn">Módulo 2</a>
+        </div>
+      </div>
+
+      <div class="card">
+        <img src="img/modulo3.png" alt="Módulo 3" />
+        <div class="card-content">
+          <h3>Procedimiento</h3>
+          <p>
+            Procedimiento para la obtención de muestra representativa de células
+            del cuello uterino para la detección oportuna de lesiones
+            precancerosas o malignas.
+          </p>
+          <a href="modulo3.html" class="btn">Módulo 3</a>
+        </div>
+      </div>
+    </main>
+
+    <!-- Botón inferior -->
+    <footer class="footer-btn">
+      <a href="modulo1.html" class="main-btn">Empezar Módulos</a>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const toggles = document.querySelectorAll(".nav-toggle");
+
+        toggles.forEach((toggle) => {
+          toggle.addEventListener("click", function (e) {
+            e.preventDefault();
+            const parent = this.parentElement;
+            parent.classList.toggle("open");
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
